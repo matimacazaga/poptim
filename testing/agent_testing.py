@@ -24,9 +24,9 @@ np.random.seed(42)
 tf.random.set_seed(42)
 
 WINDOW = 50
-N_SEQ = 10
+N_SEQ = 10 # in case of using RNN agents
 
-path='C:/Users/matim/Documents/TesisMaestria/'
+path='./'
 
 config = pickle.load(open(f'{path}config.p', 'rb'))
 
@@ -73,5 +73,5 @@ def sim_cla_mv(i,universe):
 
 num_cores = multiprocessing.cpu_count()
 print(num_cores)
-inputs = tqdm.tqdm([(i, ri) for i,ri in zip(range(73,100),random_universes[73:])])
+inputs = tqdm.tqdm([(i, ri) for i,ri in enumerate(random_universes)])
 Parallel(n_jobs=num_cores)(delayed(sim_cla_mv)(i,universe) for i,universe in inputs)
